@@ -16,7 +16,7 @@ const addNewPost = (req,res) => {
         .then((feeds)=>res.render('index', {feeds, err: 'The name field must be no longer than 15 characters'}))
     }else if(req.body.message.length>40){
         Feed.find()
-        .then((feeds)=>res.render('index', {feeds, err: 'The name message must be no longer than 40 characters'}))
+        .then((feeds)=>res.render('index', {feeds, err: 'The message field must be no longer than 40 characters'}))
     }
     else{
         const newFeed = new Feed(req.body)
@@ -59,7 +59,7 @@ const editFeed = (req,res)=> {
     }else if(req.body.message.length>40){
         const {id} = req.params;
         Feed.findById(id)
-        .then((theFeed)=>{res.render('editPage', {theFeed, err: 'The name message must be no longer than 40 characters'})})
+        .then((theFeed)=>{res.render('editPage', {theFeed, err: 'The message field must be no longer than 40 characters'})})
     }else{
         const {id} = req.params;
         Feed.findByIdAndUpdate(id, req.body)
