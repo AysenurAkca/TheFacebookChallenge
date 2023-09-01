@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Show One Page</title>
+    <style>
+        .container{
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        .btns, #headAndDate{
+            display: flex;
+            align-items: center;
+            gap: 45px;
+        }
+     
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="/feed">
+            <button class="btn btn-success">Back to Main Page</button>
+        </form>
+        <div id="headAndDate">
+            <h1><%= selecetedFeed.name %></h1> <span> <%= selecetedFeed.created_at %></span>
+        </div>
+        <p><%= selecetedFeed.message %></p>
+        
+    
+        <div class="btns">
+            <form action="/feed/delete/<%= selecetedFeed._id %>" method="post">
+                <button class="btn btn-danger">Delete</button>
+            </form>
+            <form action="/feed/edit/<%= selecetedFeed._id %>" method="get">
+                <button class="btn btn-warning">Edit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head') %>
+        <title>Edit Page</title>
+        <style>
+            .container {
+                width: 80%;
+                margin: 20px auto;
+            }
+
+            #name, #message {
+                width: 50%;
+                padding: 5px 10px;
+            }
+            label{
+                width: 70px;
+            }
+            #err{
+                color: red;
+                font-weight: bold;
+            }
+        </style>
+</head>
+
+<body>
+    <div class="container">
+        <form action="/feed">
+            <button class="btn btn-success mb-3">Back to Main Page</button>
+        </form>
+        <form action="/feed/edit/<%= theFeed._id %>" method="post">
+            <p>
+                <label for="name">Name: </label>
+                <input type="text" id="name" name="name" value="<%= theFeed.name %>">
+            </p>
+            <p>
+                <label for="message">Message: </label>
+                <textarea name="message" id="message"><%= theFeed.message %></textarea>
+            </p>
+            <% if(err){ %>
+                <p id="err">
+                    <%= err %>
+                </p>
+            <% } %>
+            <p>
+                <button class="btn btn-warning">Submit</button>
+            </p>
+
+        </form>
+    </div>
+</body>
+
+</html>

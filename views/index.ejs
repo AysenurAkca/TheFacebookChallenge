@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head') %>
+        <title>Welcome to Facebook</title>
+        <link rel="stylesheet" href="indexStyle.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to Facebook</h1>
+        <form action="/feed" method="post">
+            <p>
+                <label for="name">Name: </label>
+                <input type="text" id="name" name="name" placeholder="Your name">
+            </p>
+            <p>
+                <label for="message">Message: </label>
+                <textarea name="message" id="message" placeholder="Your message"></textarea>
+            </p>
+            <% if(err){ %>
+                <p id="err">
+                    <%= err %>
+                </p>
+                <% } %>
+                    <p>
+                        <button class="btn btn-primary">Add a Post</button>
+                    </p>
+        </form>
+
+
+        <div class="feedsPlace">
+            <% if(feeds.length>0){ %>
+                <% for(let i=0 ; i<feeds.length; i++){ %>
+                    <div class="oneFeed card">
+                        <h2>
+                            <%= feeds[i].name %>
+                        </h2>
+                        <p>
+                            <%= feeds[i].message %>
+                        </p>
+                        <div id="dateAndMore">
+                            <p>
+                                <%= feeds[i].created_at %>
+                                
+                            </p> 
+                            <a href="/feed/<%= feeds[i]._id %>"> See more</a>
+                        </div>
+                        
+                    </div>
+                <% } %>
+            <% }else{ %>
+                <p>There is nothing to display</p>
+            <% } %>
+
+        </div>
+    </div>
+</body>
+
+</html>
